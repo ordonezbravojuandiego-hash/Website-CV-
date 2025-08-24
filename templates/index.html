@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- HERO / ACERCA (ancla principal) -->
+<section id="acerca">
+  <div class="container text-center">
+    <img
+      src="{{ url_for('static', filename='images/' ~ data['imagenes']['profile picture']) }}"
+      class="rounded-circle mb-3"
+      style="width: 200px; height: 200px; object-fit: cover;"
+      alt="Foto de perfil">
+
+    <h1 class="mb-1">{{ data['First name'] }} {{ data['Last name'] }}</h1>
+    <p class="text-muted mb-3">
+      {{ data['description']['short description'] }}
+    </p>
+
+    <a class="btn btn-dark btn-lg mt-2" href="{{ url_for('download_cv') }}">
+      <i class="bi bi-download me-2"></i> Descargar CV
+    </a>
+  </div>
+</section>
+
+ <!-- ACERCA DE MÍ + HABILIDADES (dos columnas alineadas) -->
+<section class="pt-0">
+  <div class="container">
+    <div class="shadow-sm p-4 p-md-5 bg-white rounded-4">
+
+      <!-- Título a lo ancho para que no desplace la columna derecha -->
+      <h2 class="mb-4">Acerca de mí</h2>
+
+      <div class="row g-4 align-items-start">
+        <!-- Columna izquierda: Acerca de mí -->
+        <div class="col-12 col-lg-6">
+          <h3 class="h5 mb-3">Personal</h3>
+          <p class="mb-0" style="text-align: justify;">
+            {{ data['description']['long description'] | safe }}
+
+          </p>
+        </div>
+
+        <!-- Columna derecha: Habilidades técnicas -->
+        <div class="col-12 col-lg-6">
+          <h3 class="h5 mb-3 ps-lg-4">Habilidades técnicas</h3>
+
+          {% set skills = data.get('skills') or data.get('technical_skills') %}
+          {% if skills %}
+            <ul class="mb-0">
+              {% for categoria, detalle in skills.items() %}
+                <li class="mb-3">
+                  <span class="fw-semibold">{{ categoria }}:</span> {{ detalle }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <!-- Fallback si aún no cargaste skills en data.py -->
+            <ul class="mb-0">
+              <li class="mb-3"><span class="fw-semibold">Programación:</span> Python, Stata, SQL, Excel, Power BI</li>
+              <li class="mb-3"><span class="fw-semibold">Análisis de datos:</span> Limpieza, visualización, regresión lineal y logística, análisis multivariado</li>
+              <li class="mb-3"><span class="fw-semibold">Herramientas:</span> Pandas, NumPy, Matplotlib, Git, Jupyter</li>
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- EDUCACIÓN -->
+<section id="educacion">
+  <div class="container">
+
+    <!-- Título con icono y una breve intro -->
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <h2 class="mb-0">Educación</h2>
+      <i class="bi bi-mortarboard fs-3"></i>
+    </div>
+    <p class="text-muted mb-4">Mi formación académica</p>
+
+    <!-- Tarjetas responsivas -->
+    <div class="row g-4">
+      {% for inst, e in data["education"].items() %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100 border-0 rounded-4">
+            <div class="card-body">
+              <!-- Nombre de la institución -->
+              <h5 class="card-title mb-1">{{ inst }}</h5>
+
+              <!-- Localidad: debajo del nombre, mismo estilo que el período -->
+              {% if e.get('location') %}
+                <div class="text-muted fst-italic">{{ e['location'] }}</div>
+              {% endif %}
+
+              <!-- (Opcional) Título/degree -->
+              {% if e.get('degree') %}
+                <div class="fw-semibold mt-1">{{ e['degree'] }}</div>
+              {% endif %}
+
+              <!-- Período -->
+              {% if e.get('time period') %}
+                <div class="text-muted fst-italic mb-3">{{ e['time period'] }}</div>
+              {% endif %}
+
+              <!-- Descripción en texto corrido -->
+              {% if e.get('description') %}
+                <p class="mb-0" style="text-align: justify;">
+                  {{ e['description'] | replace('\n', ' ') }}
+                </p>
+              {% endif %}
+            </div>
+
+            {# Footer opcional con botones si existen enlaces en data.py #}
+            {% if e.get('thesis_link') or e.get('docs_link') %}
+              <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4 mt-auto">
+                <div class="d-flex gap-3">
+                  {% if e.get('thesis_link') %}
+                    <a class="btn btn-dark flex-grow-1" href="{{ e['thesis_link'] }}" target="_blank" rel="noreferrer">Proyecto de tesis</a>
+                  {% endif %}
+                  {% if e.get('docs_link') %}
+                    <a class="btn btn-outline-dark flex-grow-1" href="{{ e['docs_link'] }}" target="_blank" rel="noreferrer">Documentos</a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS (solo título + descripción) -->
+<section id="proyectos">
+  <div class="container">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <h2 class="mb-0">Proyecto Destacado</h2>
+      <i class="bi bi-kanban fs-3"></i>
+    </div>
+
+    {% if data.get('projects') %}
+      <div class="row g-4">
+        {% for p in data['projects'] %}
+          <div class="col-12">
+            <div class="card shadow-sm border-0 rounded-4">
+              <div class="card-body">
+                <h5 class="card-title mb-2">{{ p['title'] }}</h5>
+                {% set desc = p.get('description') or p.get('summary') %}
+                {% if desc %}
+                  <p class="mb-0" style="text-align: justify;">{{ desc | safe }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-muted">Aún no hay proyectos cargados.</p>
+    {% endif %}
+  </div>
+</section>
+
+
+
+<!-- CONTACTO -->
+<section id="contacto" class="text-center">
+  <h2 class="mb-3">Contacto</h2>
+  <p class="text-muted mb-4">Por favor, no dude en ponerse en contacto conmigo a través de cualquiera de los siguientes medios.</p>
+
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    {% if data.get('contact', {}).get('email') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="mailto:{{ data['contact']['email'] }}"
+         aria-label="Email"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar email">
+        <i class="bi bi-envelope fs-3"></i>
+      </a>
+    {% endif %}
+
+    {% if data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
+      {# Tomamos el número de 'whatsapp' si existe; si no, usamos 'phone' #}
+      {% set raw = data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
+      {# Limpiamos espacios, +, -, () para que funcione con wa.me #}
+      {% set wa = raw | replace(' ', '') | replace('+', '') | replace('-', '') | replace('(', '') | replace(')', '') %}
+
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="https://wa.me/{{ wa }}?text=Hola%20Juan%20Diego,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20contactarte."
+         target="_blank" rel="noreferrer"
+         aria-label="WhatsApp"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir WhatsApp">
+        <i class="bi bi-whatsapp fs-3"></i>
+      </a>
+    {% endif %}
+
+    {% if data.get('contact', {}).get('linkedin') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['linkedin'] }}" target="_blank" rel="noreferrer"
+         aria-label="LinkedIn"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir LinkedIn">
+        <i class="bi bi-linkedin fs-3"></i>
+      </a>
+    {% endif %}
+
+    {% if data.get('contact', {}).get('github') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['github'] }}" target="_blank" rel="noreferrer"
+         aria-label="GitHub"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir GitHub">
+        <i class="bi bi-github fs-3"></i>
+      </a>
+    {% endif %}
+
+    {% if data.get('contact', {}).get('instagram') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['instagram'] }}" target="_blank" rel="noreferrer"
+         aria-label="Instagram"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir Instagram">
+        <i class="bi bi-instagram fs-3"></i>
+      </a>
+    {% endif %}
+  </div>
+
+  <p class="text-muted mt-4 mb-0 small">
+    Creado por {{ data['First name'] }} {{ data['Last name'] }}
+  </p>
+</section>
+
+
+{% endblock %}
