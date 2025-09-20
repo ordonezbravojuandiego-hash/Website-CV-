@@ -11,7 +11,7 @@ inputs = {
     },
 
     "description": {
-        "short description": "Analista de Datos Jr, con orientación en Sociología Económica y Métodos Cuantitativos",
+        "short description": "Investigación | Ciencia de Datos | Sociología Económica",
         "long description": """¡Bienvenido a mi website! en él no solamente podrás encontrar mi formación académica, mis habilidades técnicas y mis proyectos, sino también podrás conocer un poco más acerca de mí, y quien soy… 
 
 
@@ -40,8 +40,7 @@ inputs = {
 metodologías cuantitativas y cualitativas, con especial interés en el análisis estadístico. Manejo
 modelos matemáticos para la medición y análisis de datos, incluyendo regresiones (lineales y
 logísticas), análisis multivariado y trivariado, diseño y aplicación de encuestas, modelos
-probabilísticos (odds ratio), visualización y storytelling con datos. He sido expositor en mesas en inglés durante las Jornadas de Sociología de la Facultad de
-Ciencias Sociales (UBA)."""
+probabilísticos (odds ratio), visualización y storytelling con datos. """
         }
     },
 
@@ -58,7 +57,7 @@ Ciencias Sociales (UBA)."""
     "projects": [
     {
         "title": "Impacto del COVID-19 en el mercado de trabajo Argentino",
-        "description": "Investigación cuantitativa presentada en las Jornadas de Sociología (UBA, 2024) que utiliza la base de datos secundaria <a href='https://www.argentina.gob.ar/ciencia/agencia/acciones-covid-19/convocatorias/pisac-covid-19' target='_blank' rel='noreferrer noopener'>PISAC COVID-19</a> (n=5.239; muestreo probabilístico estratificado) para analizar la asociación entre la clase social de pertenencia y la implementación del teletrabajo durante la pandemia. Se realizaron análisis descriptivos de tablas bi/trivariadas, y se estimó un modelo de regresión logística multivariada, con controles sociodemográficos. El ajuste y la significancia global del modelo se evaluaron con el test de razón de verosimilitudes (LR test) y pseudo-R²; se reportaron odds ratios con intervalos de confianza del 95%. La limpieza de los datos y recodificación de las variables se efectuaron en Python y la estimación en Stata."
+        "description": "Investigación cuantitativa realizada en el contexto del trabajos practicos aplicados de la materia Metodología de la Investigación (UBA, 2024-2025) que utiliza la base de datos secundaria <a href='https://www.argentina.gob.ar/ciencia/agencia/acciones-covid-19/convocatorias/pisac-covid-19' target='_blank' rel='noreferrer noopener'>PISAC COVID-19</a> (n=5.239; muestreo probabilístico estratificado) para analizar la asociación entre la clase social de pertenencia y la implementación del teletrabajo durante la pandemia. Se realizaron análisis descriptivos de tablas bi/trivariadas, y se estimó un modelo de regresión logística multivariada, con controles sociodemográficos. El ajuste y la significancia global del modelo se evaluaron con el test de razón de verosimilitudes (LR test) y pseudo-R²; se reportaron odds ratios con intervalos de confianza del 95%. La limpieza de los datos y recodificación de las variables se efectuaron en Python y la estimación en Stata."
     }
 ]
 
