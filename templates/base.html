@@ -38,7 +38,7 @@
 
     /* ----------------- UI POLISH ----------------- */
 
-    /* Fondo general suave (forzamos prioridad sobre styles.css) */
+    /* Fondo general suave (prioridad sobre styles.css) */
     body {
       background-color: #f6f8fb !important; /* gris muy claro */
       font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -75,7 +75,7 @@
     .btn-lg { border-radius: .8rem; }
     .btn-lg .bi { vertical-align: -0.125rem; }
 
-    /* Iconos de contacto, hover + foco accesible */
+    /* Iconos de contacto */
     .contact-icon {
       transition: transform .15s ease, box-shadow .2s ease,
                   background-color .2s ease, color .2s ease, border-color .2s ease;
@@ -86,7 +86,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.15);
     }
     .contact-icon:hover {
-      background-color: #212529; /* tono navbar-dark */
+      background-color: #212529;
       color: #fff !important;
       border-color: #212529;
     }
@@ -101,17 +101,16 @@
       color: #0b2742 !important;
     }
 
-    /* Icono de regresión: color de marca + micro-animación */
-    .reg-icon {
-      color: #0b2742;              /* tu azul oscuro */
+    /* Icono de histograma junto al título */
+    .hist-icon {
+      color: #0b2742;              /* azul marca */
       transition: transform .15s ease;
       vertical-align: -0.2rem;     /* alinear con el h2 */
+      width: 28px; height: 28px;
     }
-    .reg-icon:hover {
-      transform: translateY(-1px) scale(1.05);
-    }
+    .hist-icon:hover { transform: translateY(-1px) scale(1.05); }
     @media (min-width: 992px) {
-      .reg-icon { width: 32px; height: 32px; } /* un poquito más grande en desktop */
+      .hist-icon { width: 32px; height: 32px; }
     }
   </style>
 </head>

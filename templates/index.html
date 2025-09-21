@@ -30,12 +30,11 @@
   </div>
 </section>
 
-<!-- ACERCA DE MÍ + HABILIDADES (dos columnas alineadas) -->
+<!-- ACERCA DE MÍ + HABILIDADES (panel) -->
 <section class="pt-0">
   <div class="container">
-    <div class="shadow-sm p-4 p-md-5 bg-white rounded-4">
+    <div class="section-panel">
 
-      <!-- Título a lo ancho para que no desplace la columna derecha -->
       <h2 class="mb-4">Acerca de mí</h2>
 
       <div class="row g-4 align-items-start">
@@ -61,7 +60,6 @@
               {% endfor %}
             </ul>
           {% else %}
-            <!-- Fallback si aún no cargaste skills en data.py -->
             <ul class="mb-0">
               <li class="mb-3"><span class="fw-semibold">Programación:</span> Python, Stata, SQL, Excel, Power BI</li>
               <li class="mb-3"><span class="fw-semibold">Análisis de datos:</span> Limpieza, visualización, regresión lineal y logística, análisis multivariado</li>
@@ -75,41 +73,36 @@
   </div>
 </section>
 
-<!-- EDUCACIÓN (con panel y hover magnify) -->
+<!-- EDUCACIÓN (panel) -->
 <section id="educacion">
   <div class="container">
     <div class="section-panel">
+
       <div class="d-flex align-items-center gap-2 mb-2">
         <h2 class="mb-0">Educación</h2>
         <i class="bi bi-mortarboard fs-3"></i>
       </div>
       <p class="text-muted mb-4">Mi formación académica</p>
 
-      <!-- Tarjetas responsivas -->
       <div class="row g-4">
         {% for inst, e in data["education"].items() %}
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card shadow-sm h-100 border-0 rounded-4 edu-card">
               <div class="card-body">
-                <!-- Nombre de la institución -->
                 <h5 class="card-title mb-1">{{ inst }}</h5>
 
-                <!-- Localidad: debajo del nombre, mismo estilo que el período -->
                 {% if e.get('location') %}
                   <div class="text-muted fst-italic">{{ e['location'] }}</div>
                 {% endif %}
 
-                <!-- (Opcional) Título/degree -->
                 {% if e.get('degree') %}
                   <div class="fw-semibold mt-1">{{ e['degree'] }}</div>
                 {% endif %}
 
-                <!-- Período -->
                 {% if e.get('time period') %}
                   <div class="text-muted fst-italic mb-3">{{ e['time period'] }}</div>
                 {% endif %}
 
-                <!-- Descripción en texto corrido -->
                 {% if e.get('description') %}
                   <p class="mb-0" style="text-align: justify;">
                     {{ e['description'] | replace('\n', ' ') }}
@@ -117,7 +110,6 @@
                 {% endif %}
               </div>
 
-              {# Footer opcional con botones si existen enlaces en data.py #}
               {% if e.get('thesis_link') or e.get('docs_link') %}
                 <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4 mt-auto">
                   <div class="d-flex gap-3">
@@ -134,16 +126,18 @@
           </div>
         {% endfor %}
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- LICENCIAS Y CERTIFICACIONES (con panel) -->
+<!-- LICENCIAS Y CERTIFICACIONES (panel) -->
 <section id="certificaciones">
   <div class="container">
     <div class="section-panel">
+
       <div class="d-flex align-items-center gap-2 mb-2">
-        <h2 class="mb-0">Certificaciones</h2>
+        <h2 class="mb-0">Licencias y certificaciones</h2>
         <i class="bi bi-patch-check fs-3"></i>
       </div>
       <p class="text-muted mb-4">Formación acreditable y certificaciones profesionales</p>
@@ -202,29 +196,29 @@
       {% else %}
         <p class="text-muted">Aún no hay certificaciones cargadas.</p>
       {% endif %}
+
     </div>
   </div>
 </section>
 
-<!-- PROYECTOS (con panel) -->
+<!-- PROYECTOS (panel con icono de histograma) -->
 <section id="proyectos">
   <div class="container">
     <div class="section-panel">
+
       <div class="d-flex align-items-center gap-2 mb-2">
         <h2 class="mb-0">Proyecto Destacado</h2>
 
-        <!-- Icono SVG de “regresión lineal” (sin dependencias) -->
-        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-0.2rem">
-          <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono SVG de histograma (no invertido) -->
+        <svg class="hist-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <!-- ejes -->
-            <path d="M3 3v18h18" />
-            <!-- recta de regresión -->
-            <path d="M5 16 L19 6" />
-            <!-- puntos -->
-            <circle cx="7"  cy="14" r="1.3" fill="currentColor"/>
-            <circle cx="10" cy="12" r="1.3" fill="currentColor"/>
-            <circle cx="13" cy="10" r="1.3" fill="currentColor"/>
-            <circle cx="16" cy="8"  r="1.3" fill="currentColor"/>
+            <path d="M3 3v18h18"/>
+            <!-- barras (desde la base hacia arriba) -->
+            <rect x="6"  y="13" width="2.8" height="5.5" fill="currentColor" stroke="none"/>
+            <rect x="10" y="10" width="2.8" height="8.5" fill="currentColor" stroke="none"/>
+            <rect x="14" y="7"  width="2.8" height="11.5" fill="currentColor" stroke="none"/>
+            <rect x="18" y="12" width="2.8" height="6.5" fill="currentColor" stroke="none"/>
           </g>
         </svg>
       </div>
@@ -248,71 +242,69 @@
       {% else %}
         <p class="text-muted">Aún no hay proyectos cargados.</p>
       {% endif %}
+
     </div>
   </div>
 </section>
 
-<!-- CONTACTO (con panel) -->
+<!-- CONTACTO -->
 <section id="contacto" class="text-center">
-  <div class="container section-panel">
-    <h2 class="mb-3">Contacto</h2>
-    <p class="text-muted mb-4">Por favor, no dude en ponerse en contacto conmigo a través de cualquiera de los siguientes medios.</p>
+  <h2 class="mb-3">Contacto</h2>
+  <p class="text-muted mb-4">Por favor, no dude en ponerse en contacto conmigo a través de cualquiera de los siguientes medios.</p>
 
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
-      {% if data.get('contact', {}).get('email') %}
-        <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
-           href="mailto:{{ data['contact']['email'] }}"
-           aria-label="Email"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar email">
-          <i class="bi bi-envelope fs-3"></i>
-        </a>
-      {% endif %}
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    {% if data.get('contact', {}).get('email') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="mailto:{{ data['contact']['email'] }}"
+         aria-label="Email"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar email">
+        <i class="bi bi-envelope fs-3"></i>
+      </a>
+    {% endif %}
 
-      {% if data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
-        {% set raw = data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
-        {% set wa = raw | replace(' ', '') | replace('+', '') | replace('-', '') | replace('(', '') | replace(')', '') %}
+    {% if data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
+      {% set raw = data.get('contact', {}).get('whatsapp') or data.get('contact', {}).get('phone') %}
+      {% set wa = raw | replace(' ', '') | replace('+', '') | replace('-', '') | replace('(', '') | replace(')', '') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="https://wa.me/{{ wa }}?text=Hola%20Juan%20Diego,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20contactarte."
+         target="_blank" rel="noreferrer"
+         aria-label="WhatsApp"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir WhatsApp">
+        <i class="bi bi-whatsapp fs-3"></i>
+      </a>
+    {% endif %}
 
-        <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
-           href="https://wa.me/{{ wa }}?text=Hola%20Juan%20Diego,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20contactarte."
-           target="_blank" rel="noreferrer"
-           aria-label="WhatsApp"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir WhatsApp">
-          <i class="bi bi-whatsapp fs-3"></i>
-        </a>
-      {% endif %}
+    {% if data.get('contact', {}).get('linkedin') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['linkedin'] }}" target="_blank" rel="noreferrer"
+         aria-label="LinkedIn"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir LinkedIn">
+        <i class="bi bi-linkedin fs-3"></i>
+      </a>
+    {% endif %}
 
-      {% if data.get('contact', {}).get('linkedin') %}
-        <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
-           href="{{ data['contact']['linkedin'] }}" target="_blank" rel="noreferrer"
-           aria-label="LinkedIn"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir LinkedIn">
-          <i class="bi bi-linkedin fs-3"></i>
-        </a>
-      {% endif %}
+    {% if data.get('contact', {}).get('github') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['github'] }}" target="_blank" rel="noreferrer"
+         aria-label="GitHub"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir GitHub">
+        <i class="bi bi-github fs-3"></i>
+      </a>
+    {% endif %}
 
-      {% if data.get('contact', {}).get('github') %}
-        <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
-           href="{{ data['contact']['github'] }}" target="_blank" rel="noreferrer"
-           aria-label="GitHub"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir GitHub">
-          <i class="bi bi-github fs-3"></i>
-        </a>
-      {% endif %}
-
-      {% if data.get('contact', {}).get('instagram') %}
-        <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
-           href="{{ data['contact']['instagram'] }}" target="_blank" rel="noreferrer"
-           aria-label="Instagram"
-           data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir Instagram">
-          <i class="bi bi-instagram fs-3"></i>
-        </a>
-      {% endif %}
-    </div>
-
-    <p class="text-muted mt-4 mb-0 small">
-      Creado por {{ data['First name'] }} {{ data['Last name'] }}
-    </p>
+    {% if data.get('contact', {}).get('instagram') %}
+      <a class="btn btn-outline-dark rounded-circle p-3 contact-icon"
+         href="{{ data['contact']['instagram'] }}" target="_blank" rel="noreferrer"
+         aria-label="Instagram"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Abrir Instagram">
+        <i class="bi bi-instagram fs-3"></i>
+      </a>
+    {% endif %}
   </div>
+
+  <p class="text-muted mt-4 mb-0 small">
+    Creado por {{ data['First name'] }} {{ data['Last name'] }}
+  </p>
 </section>
 
 {% endblock %}
