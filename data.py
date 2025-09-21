@@ -26,7 +26,7 @@ inputs = {
         },
 
         "Pontificia Universidad Católica del Perú": {
-            "time period": "2020–2021",
+            "time period": "2020–2020",
             "location": "Lima, Perú",
             "description": "Completé el primer año del plan de estudios de la carrera de Derecho, desarrollando habilidades de redacción académica y argumentación."
         },
@@ -55,8 +55,8 @@ probabilísticos (odds ratio), visualización y storytelling con datos. """
 
     "projects": [
         {
-            "title": "Impacto del COVID-19 en el mercado de trabajo Argentino",
-            "description": "Investigación Cuantitativa realizada en el contexto del Trabajo Práctico Aplicado de la materia Metodología de la Investigación (UBA, 2024-2025) donde utilicé la base de datos secundaria <a href='https://www.argentina.gob.ar/ciencia/agencia/acciones-covid-19/convocatorias/pisac-covid-19' target='_blank' rel='noreferrer noopener'>PISAC COVID-19</a> (n=5.239; realizando un muestreo probabilístico estratificado) para analizar la asociación entre la clase social de pertenencia y la implementación del teletrabajo durante la pandemia. Se realizaron análisis descriptivos de tablas bi/trivariadas, y se estimó un modelo de regresión logística multivariada, con controles sociodemográficos. El ajuste y la significancia global del modelo se evaluaron con el test de razón de verosimilitudes (LR test) y pseudo-R²; se reportaron odds ratios con intervalos de confianza del 95%. La limpieza de los datos y recodificación de las variables se efectuaron en Python y la estimación en Stata."
+            "title": "Impacto del covid-19 en el mercado de laboral Argentino",
+            "description": "Investigación Cuantitativa realizada en el contexto del Trabajo Práctico Aplicado de la materia Metodología de la Investigación (UBA, 2024-2025) donde se utilizó la base de datos secundaria <a href='https://www.argentina.gob.ar/ciencia/agencia/acciones-covid-19/convocatorias/pisac-covid-19' target='_blank' rel='noreferrer noopener'>PISAC COVID-19</a> (n=5.239; realizando un muestreo probabilístico estratificado) para analizar la asociación entre la clase social de pertenencia y la implementación del teletrabajo durante la pandemia. Se realizaron análisis descriptivos de tablas bi/trivariadas, y se estimó un modelo de regresión logística multivariada, con controles sociodemográficos. El ajuste y la significancia global del modelo se evaluaron con el test de razón de verosimilitudes (LR test) y pseudo-R²; se reportaron odds ratios con intervalos de confianza del 95%. La limpieza de los datos y recodificación de las variables se efectuaron en Python y la estimación en Stata."
         }
     ],
 
