@@ -19,24 +19,38 @@ def index():
 def __ping():
     return "OK - " + inputs.get("First name", "??")
 
-# Descargar CV por idioma (ES/EN)
+# --- Descarga de CV (ES/EN) con nombres configurables por entorno ---
+CV_FILES = {
+    # Puedes cambiar esto en Heroku con:
+    # heroku config:set CV_FILENAME_ES=TuNombre.pdf
+    # heroku config:set CV_FILENAME_EN=TuNombre_EN.pdf
+    "es": os.getenv("CV_FILENAME_ES", "Juan_Diego_Ordonez_CV.pdf"),
+    "en": os.getenv("CV_FILENAME_EN", "Juan_Diego_Ordonez_CV_EN.pdf"),
+}
+
+def _cv_dir():
+    return os.path.join(app.root_path, "static", "cv")
+
+def _file_exists(filename: str) -> bool:
+    return os.path.isfile(os.path.join(_cv_dir(), filename))
+
 @app.route("/download/cv/<lang>")
 def download_cv_lang(lang):
-    # Mapear idioma a archivo (nombre ASCII para evitar problemas)
-    cv_map = {
-        "es": "Juan_Diego_Ordonez_CV.pdf",       # ya existente
-        "en": "Juan_Diego_Ordonez_CV_EN.pdf",    # súbelo a static/cv/
-    }
-    filename = cv_map.get(lang.lower())
+    lang = (lang or "").lower()
+    filename = CV_FILES.get(lang)
     if not filename:
-        abort(404)
+        abort(404)  # idioma no soportado
+    if not _file_exists(filename):
+        abort(404)  # archivo no encontrado en static/cv
+    return send_from_directory(_cv_dir(), filename, as_attachment=True, mimetype="application/pdf")
 
-    cv_dir = os.path.join(app.root_path, "static", "cv")
-    path = os.path.join(cv_dir, filename)
-    if not os.path.isfile(path):
+# Ruta antigua (compat): /download/cv -> CV en español
+@app.route("/download/cv")
+def download_cv():
+    filename = CV_FILES["es"]
+    if not _file_exists(filename):
         abort(404)
-
-    return send_from_directory(cv_dir, filename, as_attachment=True, mimetype="application/pdf")
+    return send_from_directory(_cv_dir(), filename, as_attachment=True, mimetype="application/pdf")
 
 
 
