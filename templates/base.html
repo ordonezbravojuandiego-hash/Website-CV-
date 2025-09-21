@@ -12,52 +12,97 @@
         crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         rel="stylesheet">
-  
+
+  <!-- Fuente + tu hoja de estilos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-  
+
   <style>
     html { scroll-behavior: smooth; }
+
     /* Compensa la navbar fija */
     body { padding-top: 72px; }
+
     /* Espaciado vertical estándar para cada sección */
     section { padding: 56px 0; }
     @media (min-width: 992px) {
       section { padding: 72px 0; }
     }
+
     .card.rounded-4 { border-radius: 1rem; }
 
     /* Cuando hacés clic en la navbar, el título no queda tapado */
     [id] { scroll-margin-top: 84px; }
 
-    /* Estilo/animación para los botones de contacto (clase 'contact-icon') */
+    /* ----------------- UI POLISH ----------------- */
+
+    /* Fondo general suave (forzamos prioridad sobre styles.css) */
+    body {
+      background-color: #f6f8fb !important; /* gris muy claro */
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Panel blanco reutilizable para secciones completas */
+    .section-panel {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      padding: 32px;
+    }
+    @media (min-width: 992px) {
+      .section-panel { padding: 48px; }
+    }
+
+    /* Hover “magnify” para EDUCACIÓN */
+    .edu-card {
+      transition: transform .18s ease, box-shadow .2s ease;
+      will-change: transform;
+      transform-origin: center;
+    }
+    .edu-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(0,0,0,.12);
+    }
+    /* Respeto a usuarios con reducir-movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      .edu-card { transition: box-shadow .2s ease; }
+      .edu-card:hover { transform: none; }
+    }
+
+    /* Botones grandes, micro-pulido */
+    .btn-lg { border-radius: .8rem; }
+    .btn-lg .bi { vertical-align: -0.125rem; }
+
+    /* Iconos de contacto, hover + foco accesible */
     .contact-icon {
       transition: transform .15s ease, box-shadow .2s ease,
                   background-color .2s ease, color .2s ease, border-color .2s ease;
     }
-    .contact-icon:hover, .contact-icon:focus {
+    .contact-icon:hover,
+    .contact-icon:focus {
       transform: translateY(-2px) scale(1.07);
       box-shadow: 0 10px 30px rgba(0,0,0,.15);
     }
     .contact-icon:hover {
-      background-color: #212529; /* tono de navbar-dark */
+      background-color: #212529; /* tono navbar-dark */
       color: #fff !important;
       border-color: #212529;
     }
+    .contact-icon:focus-visible {
+      outline: 2px solid #0d6efd;
+      outline-offset: 2px;
+    }
 
-    /* --- Botones grandes: micro-pulido estético --- */
-    .btn-lg { border-radius: .8rem; }
-    .btn-lg .bi { vertical-align: -0.125rem; }
-
-    /* Badge "En curso" con tono de marca */
+    /* Badge “En curso” con tu azul */
     .badge.bg-warning.text-dark {
-      background-color: #ffd966 !important; /* suave */
-      color: #0b2742 !important;            /* tu azul oscuro */
+      background-color: #ffd966 !important;
+      color: #0b2742 !important;
     }
   </style>
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="80">
 
   <!-- NAVBAR fija -->
@@ -98,3 +143,4 @@
   </script>
 </body>
 </html>
+
