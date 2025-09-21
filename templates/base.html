@@ -6,18 +6,25 @@
   <title>{% block title %}{% endblock %}</title>
 
   <!-- Bootstrap + Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
-        crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-        rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
 
   <!-- Fuente + tu hoja de estilos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
-  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap"
+    rel="stylesheet"
+  />
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
 
   <style>
     html { scroll-behavior: smooth; }
@@ -48,7 +55,7 @@
     .section-panel {
       background: #fff;
       border-radius: 1rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
       padding: 32px;
     }
     @media (min-width: 992px) {
@@ -63,7 +70,7 @@
     }
     .edu-card:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(0,0,0,.12);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .12);
     }
     /* Respeto a usuarios con reducir-movimiento */
     @media (prefers-reduced-motion: reduce) {
@@ -77,13 +84,17 @@
 
     /* Iconos de contacto */
     .contact-icon {
-      transition: transform .15s ease, box-shadow .2s ease,
-                  background-color .2s ease, color .2s ease, border-color .2s ease;
+      transition:
+        transform .15s ease,
+        box-shadow .2s ease,
+        background-color .2s ease,
+        color .2s ease,
+        border-color .2s ease;
     }
     .contact-icon:hover,
     .contact-icon:focus {
       transform: translateY(-2px) scale(1.07);
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
     }
     .contact-icon:hover {
       background-color: #212529;
@@ -114,54 +125,56 @@
     }
 
     /* ====== Más aire en el HERO (encabezado) ====== */
-.hero {
-  padding-top: 72px;     /* arriba del hero */
-  padding-bottom: 40px;  /* abajo del hero */
-}
-@media (min-width: 992px) {
-  .hero {
-    padding-top: 96px;
-    padding-bottom: 56px;
-  }
-}
+    .hero {
+      padding-top: 72px;     /* arriba del hero */
+      padding-bottom: 40px;  /* abajo del hero */
+    }
+    @media (min-width: 992px) {
+      .hero {
+        padding-top: 96px;
+        padding-bottom: 56px;
+      }
+    }
 
-/* Espaciado fino dentro del hero */
-.hero h1 { margin-top: .25rem; margin-bottom: .5rem; }
-.hero .subtitle { margin-bottom: .75rem; }
+    /* Espaciado fino dentro del hero */
+    .hero h1 { margin-top: .25rem; margin-bottom: .5rem; }
+    .hero .subtitle { margin-bottom: .75rem; }
 
-/* Grupo de botones del hero (CVs) con más separación */
-.hero .cv-group { gap: 1rem; }            /* móviles */
-@media (min-width: 768px) {
-  .hero .cv-group { gap: 1.25rem; }       /* tablets+ */
-}
+    /* Grupo de botones del hero (CVs) con más separación */
+    .hero .cv-group { gap: 1rem; }            /* móviles */
+    @media (min-width: 768px) {
+      .hero .cv-group { gap: 1.25rem; }       /* tablets+ */
+    }
 
-/* Un poco más de sombra suave al avatar ayuda a separarlo del fondo */
-.avatar-hero {
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,.08));
-}
+    /* Un poco más de sombra suave al avatar ayuda a separarlo del fondo */
+    .avatar-hero {
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .08));
+    }
 
-/* Hover sutil para los botones de CV */
-.btn-cv {
-  transition: transform .15s ease, box-shadow .2s ease,
-              background-color .2s ease, color .2s ease, border-color .2s ease;
-}
-.btn-cv:hover,
-.btn-cv:focus {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 10px 30px rgba(0,0,0,.15);
-}
-/* Mantiene estética dark en hover/focus */
-.btn-cv:hover {
-  background-color: #212529;
-  color: #fff !important;
-  border-color: #212529;
-}
-.btn-cv:focus-visible {
-  outline: 2px solid #0d6efd;
-  outline-offset: 2px;
-}
-
-
+    /* Hover sutil para los botones de CV */
+    .btn-cv {
+      transition:
+        transform .15s ease,
+        box-shadow .2s ease,
+        background-color .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+    }
+    .btn-cv:hover,
+    .btn-cv:focus {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+    }
+    /* Mantiene estética dark en hover/focus */
+    .btn-cv:hover {
+      background-color: #212529;
+      color: #fff !important;
+      border-color: #212529;
+    }
+    .btn-cv:focus-visible {
+      outline: 2px solid #0d6efd;
+      outline-offset: 2px;
+    }
   </style>
 </head>
 
@@ -172,9 +185,15 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#acerca">{{ global_["Last name"] }}</a>
 
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -192,9 +211,11 @@
 
   {% block content %}{% endblock %}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-          crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"
+  ></script>
 
   <!-- Inicialización de tooltips Bootstrap -->
   <script>
@@ -205,4 +226,3 @@
   </script>
 </body>
 </html>
-
