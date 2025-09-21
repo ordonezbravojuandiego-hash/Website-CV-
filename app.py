@@ -19,19 +19,25 @@ def index():
 def __ping():
     return "OK - " + inputs.get("First name", "??")
 
-# Descargar CV
-@app.route("/download/cv")
-def download_cv():
-    filename = "Juan_Diego_Ordonez_CV.pdf"   # nombre ASCII que estás usando
+# Descargar CV por idioma (ES/EN)
+@app.route("/download/cv/<lang>")
+def download_cv_lang(lang):
+    # Mapear idioma a archivo (nombre ASCII para evitar problemas)
+    cv_map = {
+        "es": "Juan_Diego_Ordonez_CV.pdf",       # ya existente
+        "en": "Juan_Diego_Ordonez_CV_EN.pdf",    # súbelo a static/cv/
+    }
+    filename = cv_map.get(lang.lower())
+    if not filename:
+        abort(404)
+
     cv_dir = os.path.join(app.root_path, "static", "cv")
     path = os.path.join(cv_dir, filename)
     if not os.path.isfile(path):
         abort(404)
+
     return send_from_directory(cv_dir, filename, as_attachment=True, mimetype="application/pdf")
 
-if __name__ == "__main__":
-    # host y puerto explícitos para no confundirse
-    app.run(host="127.0.0.1", port=5000, debug=True)
 
 
 
