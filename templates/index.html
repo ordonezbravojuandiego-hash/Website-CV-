@@ -16,16 +16,18 @@
       {{ data['description']['short description'] }}
     </p>
 
-    <div class="d-flex flex-wrap gap-2 justify-content-center mt-2">
+   <div class="d-flex flex-wrap gap-2 justify-content-center mt-2">
   <a class="btn btn-dark btn-lg"
      href="{{ url_for('download_cv_lang', lang='es') }}">
     <i class="bi bi-download me-2"></i> CV Español
   </a>
 
-  <a class="btn btn-outline-dark btn-lg"
+  <a class="btn btn-dark btn-lg"
      href="{{ url_for('download_cv_lang', lang='en') }}">
-    <i class="bi bi-translate me-2"></i> CV Inglés
+    <i class="bi bi-download me-2"></i> CV Inglés
   </a>
+</div>
+
 </div>
 
 </section>
