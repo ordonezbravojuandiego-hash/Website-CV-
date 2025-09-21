@@ -16,20 +16,21 @@
   {{ data['description']['short description'] }}
 </p>
 <div class="d-flex flex-wrap justify-content-center cv-group mt-5">
+      <a class="btn btn-dark btn-lg btn-cv"
+   href="{{ url_for('download_cv_lang', lang='es') }}"
+   aria-label="Descargar CV en español (PDF)"
+   data-bs-toggle="tooltip" data-bs-placement="top" title="Descargar CV (PDF)">
+  <i class="bi bi-download me-2"></i> CV Español
+</a>
 
-      <a class="btn btn-dark btn-lg"
-         href="{{ url_for('download_cv_lang', lang='es') }}"
-         aria-label="Descargar CV en español"
-         data-bs-toggle="tooltip" data-bs-placement="top" title="Descargar CV (PDF)">
-        <i class="bi bi-download me-2"></i> CV Español
-      </a>
+<a class="btn btn-dark btn-lg btn-cv"
+   href="{{ url_for('download_cv_lang', lang='en') }}"
+   aria-label="Descargar CV en inglés (PDF)"
+   data-bs-toggle="tooltip" data-bs-placement="top" title="Download resume (PDF)">
+  <i class="bi bi-download me-2"></i> CV Inglés
+</a>
 
-      <a class="btn btn-dark btn-lg"
-         href="{{ url_for('download_cv_lang', lang='en') }}"
-         aria-label="Descargar CV en inglés"
-         data-bs-toggle="tooltip" data-bs-placement="top" title="Download resume (PDF)">
-        <i class="bi bi-download me-2"></i> CV Inglés
-      </a>
+      
     </div>
   </div>
 </section>
@@ -41,7 +42,11 @@
   <div class="container">
     <div class="section-panel">
 
-      <h2 class="mb-4">Acerca de mí</h2>
+      <div class="d-flex align-items-center gap-2 mb-4">
+  <h2 class="mb-0">Acerca de mí</h2>
+  <i class="bi bi-person fs-3" aria-hidden="true"></i>
+</div>
+
 
       <div class="row g-4 align-items-start">
         <!-- Columna izquierda: Acerca de mí -->
