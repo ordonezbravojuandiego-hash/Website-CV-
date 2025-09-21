@@ -3,31 +3,37 @@
 {% block content %}
 
 <!-- HERO / ACERCA (ancla principal) -->
-<section id="acerca">
-  <div class="container text-center">
+<section id="acerca" class="hero">
+  <div class="container text-center mb-5">
     <img
       src="{{ url_for('static', filename='images/' ~ data['imagenes']['profile picture']) }}"
-      class="rounded-circle mb-3"
+      class="rounded-circle mb-3 avatar-hero"
       style="width: 200px; height: 200px; object-fit: cover;"
       alt="Foto de perfil">
 
-    <h1 class="mb-1">{{ data['First name'] }} {{ data['Last name'] }}</h1>
-    <p class="text-muted mb-3">
+    <h1 class="mb-2">{{ data['First name'] }} {{ data['Last name'] }}</h1>
+    <p class="text-muted subtitle">
       {{ data['description']['short description'] }}
     </p>
 
-    <div class="d-flex flex-wrap gap-2 justify-content-center mt-2">
+    <div class="d-flex flex-wrap justify-content-center cv-group mt-4">
       <a class="btn btn-dark btn-lg"
-         href="{{ url_for('download_cv_lang', lang='es') }}">
+         href="{{ url_for('download_cv_lang', lang='es') }}"
+         aria-label="Descargar CV en español"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Descargar CV (PDF)">
         <i class="bi bi-download me-2"></i> CV Español
       </a>
 
       <a class="btn btn-dark btn-lg"
-         href="{{ url_for('download_cv_lang', lang='en') }}">
+         href="{{ url_for('download_cv_lang', lang='en') }}"
+         aria-label="Descargar CV en inglés"
+         data-bs-toggle="tooltip" data-bs-placement="top" title="Download resume (PDF)">
         <i class="bi bi-download me-2"></i> CV Inglés
       </a>
     </div>
   </div>
+</section>
+
 </section>
 
 <!-- ACERCA DE MÍ + HABILIDADES (panel) -->

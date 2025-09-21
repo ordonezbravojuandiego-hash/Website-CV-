@@ -112,6 +112,34 @@
     @media (min-width: 992px) {
       .hist-icon { width: 32px; height: 32px; }
     }
+
+    /* ====== Más aire en el HERO (encabezado) ====== */
+.hero {
+  padding-top: 72px;     /* arriba del hero */
+  padding-bottom: 40px;  /* abajo del hero */
+}
+@media (min-width: 992px) {
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Espaciado fino dentro del hero */
+.hero h1 { margin-top: .25rem; margin-bottom: .5rem; }
+.hero .subtitle { margin-bottom: .75rem; }
+
+/* Grupo de botones del hero (CVs) con más separación */
+.hero .cv-group { gap: 1rem; }            /* móviles */
+@media (min-width: 768px) {
+  .hero .cv-group { gap: 1.25rem; }       /* tablets+ */
+}
+
+/* Un poco más de sombra suave al avatar ayuda a separarlo del fondo */
+.avatar-hero {
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.08));
+}
+
   </style>
 </head>
 
