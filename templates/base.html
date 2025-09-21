@@ -100,6 +100,19 @@
       background-color: #ffd966 !important;
       color: #0b2742 !important;
     }
+
+    /* Icono de regresión: color de marca + micro-animación */
+    .reg-icon {
+      color: #0b2742;              /* tu azul oscuro */
+      transition: transform .15s ease;
+      vertical-align: -0.2rem;     /* alinear con el h2 */
+    }
+    .reg-icon:hover {
+      transform: translateY(-1px) scale(1.05);
+    }
+    @media (min-width: 992px) {
+      .reg-icon { width: 32px; height: 32px; } /* un poquito más grande en desktop */
+    }
   </style>
 </head>
 
