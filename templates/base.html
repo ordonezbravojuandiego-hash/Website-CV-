@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% block title %}{% endblock %}</title>
 
-  <!-- Bootstrap + Icons -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -17,192 +16,155 @@
     rel="stylesheet"
   />
 
-  <!-- Fuente + tu hoja de estilos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap"
-    rel="stylesheet"
-  />
-  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    html { scroll-behavior: smooth; }
+    /* =========================================
+       ESTILO CANCHERO CORPORATIVO (REVISADO)
+       ========================================= */
 
-    /* Compensa la navbar fija */
-    body { padding-top: 72px; }
-
-    /* Espaciado vertical estándar para cada sección */
-    section { padding: 56px 0; }
-    @media (min-width: 992px) {
-      section { padding: 72px 0; }
+    :root {
+        --bg-body: #ffffff;
+        --bg-panel: #f9fafb;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --accent-blue: #0056b3; 
+        --border-color: #e5e7eb;
+        --panel-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+        --border-radius-main: 24px;
     }
 
-    .card.rounded-4 { border-radius: 1rem; }
-
-    /* Cuando hacés clic en la navbar, el título no queda tapado */
-    [id] { scroll-margin-top: 84px; }
-
-    /* ----------------- UI POLISH ----------------- */
-
-    /* Fondo general suave (prioridad sobre styles.css) */
     body {
-      background-color: #f6f8fb !important; /* gris muy claro */
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background-color: var(--bg-body) !important;
+        color: var(--text-main);
+        font-family: 'Poppins', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding-top: 80px;
     }
 
-    /* Panel blanco reutilizable para secciones completas */
-    .section-panel {
-      background: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
-      padding: 32px;
-    }
-    @media (min-width: 992px) {
-      .section-panel { padding: 48px; }
+    section { padding: 60px 0; }
+    [id] { scroll-margin-top: 100px; }
+
+    /* --- NAVBAR CON EFECTO HOVER --- */
+    /* VUELVE AL ORIGINAL: Blur de 12px y fondo 0.8 */
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
     }
 
-    /* Hover “magnify” para EDUCACIÓN */
-    .edu-card {
-      transition: transform .18s ease, box-shadow .2s ease;
-      will-change: transform;
-      transform-origin: center;
+    /* El nombre en la esquina */
+    .navbar-brand { 
+        font-weight: 700; 
+        color: var(--text-main) !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .edu-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, .12);
-    }
-    /* Respeto a usuarios con reducir-movimiento */
-    @media (prefers-reduced-motion: reduce) {
-      .edu-card { transition: box-shadow .2s ease; }
-      .edu-card:hover { transform: none; }
+    .navbar-brand:hover {
+        transform: scale(1.1);
+        color: var(--accent-blue) !important;
     }
 
-    /* Botones grandes, micro-pulido */
-    .btn-lg { border-radius: .8rem; }
-    .btn-lg .bi { vertical-align: -0.125rem; }
-
-    /* Iconos de contacto */
-    .contact-icon {
-      transition:
-        transform .15s ease,
-        box-shadow .2s ease,
-        background-color .2s ease,
-        color .2s ease,
-        border-color .2s ease;
+    /* Los links del menú */
+    .nav-link { 
+        font-weight: 500; 
+        color: var(--text-muted) !important;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
     }
-    .contact-icon:hover,
-    .contact-icon:focus {
-      transform: translateY(-2px) scale(1.07);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
-    }
-    .contact-icon:hover {
-      background-color: #212529;
-      color: #fff !important;
-      border-color: #212529;
-    }
-    .contact-icon:focus-visible {
-      outline: 2px solid #0d6efd;
-      outline-offset: 2px;
+    
+    .nav-link:hover {
+        color: var(--accent-blue) !important;
+        transform: translateY(-3px); /* Se eleva un poquito */
     }
 
-    /* Badge “En curso” con tu azul */
-    .badge.bg-warning.text-dark {
-      background-color: #ffd966 !important;
-      color: #0b2742 !important;
+    /* --- Hero Section --- */
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
     }
 
-    /* Icono de histograma junto al título */
-    .hist-icon {
-      color: #0b2742;              /* azul marca */
-      transition: transform .15s ease;
-      vertical-align: -0.2rem;     /* alinear con el h2 */
-      width: 28px; height: 28px;
-    }
-    .hist-icon:hover { transform: translateY(-1px) scale(1.05); }
-    @media (min-width: 992px) {
-      .hist-icon { width: 32px; height: 32px; }
+    /* --- BOTONES CV --- */
+    .cv-group { 
+        gap: 6rem !important;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
     }
 
-    /* ====== Más aire en el HERO (encabezado) ====== */
-    .hero {
-      padding-top: 72px;     /* arriba del hero */
-      padding-bottom: 40px;  /* abajo del hero */
-    }
-    @media (min-width: 992px) {
-      .hero {
-        padding-top: 96px;
-        padding-bottom: 56px;
-      }
-    }
-
-    /* Espaciado fino dentro del hero */
-    .hero h1 { margin-top: .25rem; margin-bottom: .5rem; }
-    .hero .subtitle { margin-bottom: .75rem; }
-
-    /* Grupo de botones del hero (CVs) con más separación */
-    .hero .cv-group { gap: 1rem; }            /* móviles */
-    @media (min-width: 768px) {
-      .hero .cv-group { gap: 1.25rem; }       /* tablets+ */
-    }
-
-    /* Un poco más de sombra suave al avatar ayuda a separarlo del fondo */
-    .avatar-hero {
-      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .08));
-    }
-
-    /* Hover sutil para los botones de CV */
     .btn-cv {
-      transition:
-        transform .15s ease,
-        box-shadow .2s ease,
-        background-color .2s ease,
-        color .2s ease,
-        border-color .2s ease;
+        background-color: transparent !important;
+        color: var(--text-main) !important;
+        border: 2px solid var(--border-color) !important;
+        border-radius: 14px;
+        padding: 14px 35px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .btn-cv:hover,
-    .btn-cv:focus {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
-    }
-    /* Mantiene estética dark en hover/focus */
     .btn-cv:hover {
-      background-color: #212529;
-      color: #fff !important;
-      border-color: #212529;
+        border-color: var(--accent-blue) !important;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     }
-    .btn-cv:focus-visible {
-      outline: 2px solid #0d6efd;
-      outline-offset: 2px;
+    .btn-cv .bi { color: var(--accent-blue) !important; margin-right: 10px; font-size: 1.2rem; }
+
+    /* --- ICONO PROYECTOS --- */
+    .hist-icon { width: 28px !important; height: 28px !important; color: var(--accent-blue) !important; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+
+    /* --- APARTADOS CON HOVER --- */
+    .section-panel {
+        background: var(--bg-panel);
+        border-radius: var(--border-radius-main);
+        padding: 60px;
+        border: 1px solid rgba(0,0,0,0.02);
+        box-shadow: var(--panel-shadow);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .section-panel:hover {
+        transform: scale(1.015);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 86, 179, 0.15);
+    }
+
+    .edu-card { background: #ffffff; border: 1px solid var(--border-color) !important; border-radius: 18px; transition: all 0.4s ease; }
+    .edu-card:hover { transform: translateY(-8px); border-color: var(--accent-blue) !important; }
+
+    .bi { color: var(--accent-blue) !important; }
+
+    /* --- CONTACTO --- */
+    .contact-icon {
+        width: 65px; height: 65px; display: flex; align-items: center; justify-content: center;
+        border-radius: 50%; border: 1px solid var(--border-color); background: #fff;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .contact-icon:hover { background-color: var(--accent-blue); border-color: var(--accent-blue); transform: translateY(-8px) rotate(10deg); }
+    .contact-icon:hover .bi { color: #fff !important; }
+
   </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="80">
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
 
-  <!-- NAVBAR fija -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
       <a class="navbar-brand" href="#acerca">{{ global_["Last name"] }}</a>
-
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#acerca">Acerca de mí</a></li>
+        <ul class="navbar-nav ms-auto text-end pe-2 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#acerca">Acerca de Mí</a></li>
           <li class="nav-item"><a class="nav-link" href="#educacion">Educación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experiencia">Experiencia</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
           <li class="nav-item"><a class="nav-link" href="#certificaciones">Certificaciones</a></li>
-          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos Destacados</a></li>
           <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
         </ul>
       </div>
@@ -211,18 +173,6 @@
 
   {% block content %}{% endblock %}
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"
-  ></script>
-
-  <!-- Inicialización de tooltips Bootstrap -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const triggers = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-      [...triggers].forEach(el => new bootstrap.Tooltip(el));
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

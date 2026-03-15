@@ -19,7 +19,7 @@ def index():
 def __ping():
     return "OK - " + inputs.get("First name", "??")
 
-# --- Descarga de CV (ES/EN) ---
+# --- Visualización de CV (ES/EN) ---
 CV_FILES = {
     "es": os.getenv("CV_FILENAME_ES", "Juan_Diego_Ordonez_CV.pdf"),
     "en": os.getenv("CV_FILENAME_EN", "Juan_Diego_Ordonez_CV_EN.pdf"),
@@ -37,7 +37,8 @@ def download_cv_lang(lang):
     filename = CV_FILES.get(lang)
     if not filename or not _file_exists(filename):
         abort(404)
-    return send_from_directory(_cv_dir(), filename, as_attachment=True, mimetype="application/pdf")
+    # CORRECCIÓN: as_attachment=False permite que el navegador lo abra en lugar de descargarlo
+    return send_from_directory(_cv_dir(), filename, as_attachment=False, mimetype="application/pdf")
 
 # compat: /download/cv -> español
 @app.route("/download/cv")
@@ -45,8 +46,8 @@ def download_cv():
     filename = CV_FILES["es"]
     if not _file_exists(filename):
         abort(404)
-    return send_from_directory(_cv_dir(), filename, as_attachment=True, mimetype="application/pdf")
-
+    # CORRECCIÓN: as_attachment=False para visualización directa
+    return send_from_directory(_cv_dir(), filename, as_attachment=False, mimetype="application/pdf")
 
 
 
